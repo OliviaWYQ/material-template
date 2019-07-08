@@ -25,7 +25,7 @@ import GridItem from "components/Grid/GridItem.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import Table from "components/Table/Table.jsx";
 import Card from "components/Card/Card.jsx";
-import CardHeader from "components/Card/CardHeader.jsx";
+// import CardHeader from "components/Card/CardHeader.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 
 const styles = {
@@ -59,73 +59,74 @@ const styles = {
 };
 
 function TableList(props) {
-  const { classes } = props;
-  return (
-    <GridContainer>
-      <GridItem xs={12} sm={12} md={12}>
-        <Card>
-          <CardHeader color="primary">
-            <h4 className={classes.cardTitleWhite}>Simple Table</h4>
-            <p className={classes.cardCategoryWhite}>
-              Here is a subtitle for this table
-            </p>
-          </CardHeader>
-          <CardBody>
-            <Table
-              tableHeaderColor="primary"
-              tableHead={["Name", "Country", "City", "Salary"]}
-              tableData={[
-                ["Dakota Rice", "Niger", "Oud-Turnhout", "$36,738"],
-                ["Minerva Hooper", "Curaçao", "Sinaai-Waas", "$23,789"],
-                ["Sage Rodriguez", "Netherlands", "Baileux", "$56,142"],
-                ["Philip Chaney", "Korea, South", "Overland Park", "$38,735"],
-                ["Doris Greene", "Malawi", "Feldkirchen in Kärnten", "$63,542"],
-                ["Mason Porter", "Chile", "Gloucester", "$78,615"]
-              ]}
-            />
-          </CardBody>
-        </Card>
-      </GridItem>
-      <GridItem xs={12} sm={12} md={12}>
-        <Card plain>
-          <CardHeader plain color="primary">
-            <h4 className={classes.cardTitleWhite}>
-              Table on Plain Background
-            </h4>
-            <p className={classes.cardCategoryWhite}>
-              Here is a subtitle for this table
-            </p>
-          </CardHeader>
-          <CardBody>
-            <Table
-              tableHeaderColor="primary"
-              tableHead={["ID", "Name", "Country", "City", "Salary"]}
-              tableData={[
-                ["1", "Dakota Rice", "$36,738", "Niger", "Oud-Turnhout"],
-                ["2", "Minerva Hooper", "$23,789", "Curaçao", "Sinaai-Waas"],
-                ["3", "Sage Rodriguez", "$56,142", "Netherlands", "Baileux"],
-                [
-                  "4",
-                  "Philip Chaney",
-                  "$38,735",
-                  "Korea, South",
-                  "Overland Park"
-                ],
-                [
-                  "5",
-                  "Doris Greene",
-                  "$63,542",
-                  "Malawi",
-                  "Feldkirchen in Kärnten"
-                ],
-                ["6", "Mason Porter", "$78,615", "Chile", "Gloucester"]
-              ]}
-            />
-          </CardBody>
-        </Card>
-      </GridItem>
-    </GridContainer>
-  );
+    // const { classes } = props;
+    return (
+        <GridContainer>
+            <GridItem xs={12} sm={12} md={12}>
+                <Card>
+                    {/* <CardHeader color="primary">
+            <h4 className={classes.cardTitleWhite}>我的订单</h4>
+            <p className={classes.cardCategoryWhite}>My Orders</p>
+          </CardHeader> */}
+                    <CardBody>
+                        <Table
+                            tableHeaderColor=""
+                            tableHead={[
+                                "订单号",
+                                "商家名称",
+                                "菜品名称",
+                                "价格",
+                                "时间",
+                                "用户名"
+                            ]}
+                            tableData={[
+                                [
+                                    89382741,
+                                    "鱼若初为酸菜鱼",
+                                    "招牌无骨酸菜鱼",
+                                    53,
+                                    "2019-06-13",
+                                    "小明"
+                                ],
+                                [
+                                    89382742,
+                                    "湘味特色木桶饭庄",
+                                    "凉瓜肉片饭",
+                                    13,
+                                    "2019-07-01",
+                                    "小明"
+                                ],
+                                [
+                                    89382743,
+                                    "湘味特色木桶饭庄",
+                                    "腐竹炒肉饭",
+                                    13,
+                                    "2019-07-04",
+                                    "悟空"
+                                ],
+                                [
+                                    89382743,
+                                    "湘味特色木桶饭庄",
+                                    "茄子肉沫饭",
+                                    14,
+                                    "2019-07-04",
+                                    "悟空"
+                                ],
+                                [
+                                    89382744,
+                                    "鱼若初为酸菜鱼",
+                                    "酸汤肥牛",
+                                    23.8,
+                                    "2019-07-07",
+                                    "悟空"
+                                ]
+                            ]}
+                        />
+                    </CardBody>
+                </Card>
+            </GridItem>
+        </GridContainer>
+    );
 }
 
 TableList.propTypes = {
