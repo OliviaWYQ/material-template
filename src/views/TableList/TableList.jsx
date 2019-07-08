@@ -58,19 +58,75 @@ const styles = {
   }
 };
 
+const data = [
+        [
+            "89382741",
+            "鱼若初为酸菜鱼",
+            "招牌无骨酸菜鱼",
+            "53",
+            "2019-06-13",
+            "小明"
+        ],
+        [
+            "89382742",
+            "湘味特色木桶饭庄",
+            "凉瓜肉片饭",
+            "13",
+            "2019-07-01",
+            "小明"
+        ],
+        [
+            "89382743",
+            "湘味特色木桶饭庄",
+            "腐竹炒肉饭",
+            "13",
+            "2019-07-04",
+            "悟空"
+        ],
+        [
+            "89382743",
+            "湘味特色木桶饭庄",
+            "茄子肉沫饭",
+            "14",
+            "2019-07-04",
+            "悟空"
+        ],
+        [
+            "89382744",
+            "鱼若初为酸菜鱼",
+            "酸汤肥牛",
+            "23.8",
+            "2019-07-07",
+            "悟空"
+        ]
+];
+
+function userControl(username) {
+    if (username === "admin") {
+        return data;
+    } else {
+        var valid = [];
+        for (var i=0; i<data.length; i++) {
+            if (data[i].includes(username)) {
+                valid.push(data[i]);
+            }
+        }
+        console.log('valid data:', valid);
+        return (
+            valid
+        )
+    }
+};
+
 function TableList(props) {
     // const { classes } = props;
     return (
         <GridContainer>
             <GridItem xs={12} sm={12} md={12}>
                 <Card>
-                    {/* <CardHeader color="primary">
-            <h4 className={classes.cardTitleWhite}>我的订单</h4>
-            <p className={classes.cardCategoryWhite}>My Orders</p>
-          </CardHeader> */}
                     <CardBody>
                         <Table
-                            tableHeaderColor=""
+                            tableHeaderColor="primary"
                             tableHead={[
                                 "订单号",
                                 "商家名称",
@@ -79,48 +135,7 @@ function TableList(props) {
                                 "时间",
                                 "用户名"
                             ]}
-                            tableData={[
-                                [
-                                    89382741,
-                                    "鱼若初为酸菜鱼",
-                                    "招牌无骨酸菜鱼",
-                                    53,
-                                    "2019-06-13",
-                                    "小明"
-                                ],
-                                [
-                                    89382742,
-                                    "湘味特色木桶饭庄",
-                                    "凉瓜肉片饭",
-                                    13,
-                                    "2019-07-01",
-                                    "小明"
-                                ],
-                                [
-                                    89382743,
-                                    "湘味特色木桶饭庄",
-                                    "腐竹炒肉饭",
-                                    13,
-                                    "2019-07-04",
-                                    "悟空"
-                                ],
-                                [
-                                    89382743,
-                                    "湘味特色木桶饭庄",
-                                    "茄子肉沫饭",
-                                    14,
-                                    "2019-07-04",
-                                    "悟空"
-                                ],
-                                [
-                                    89382744,
-                                    "鱼若初为酸菜鱼",
-                                    "酸汤肥牛",
-                                    23.8,
-                                    "2019-07-07",
-                                    "悟空"
-                                ]
-                            ]}
+                            tableData={userControl("admin")}
                         />
                     </CardBody>
                 </Card>

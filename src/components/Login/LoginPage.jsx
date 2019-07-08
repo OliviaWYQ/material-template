@@ -62,7 +62,7 @@ class LoginPage extends React.Component {
         );
     }
     render() {
-        const { classes, ...rest } = this.props;
+        const { classes } = this.props;
         return (
             <div>
                 <div
@@ -98,21 +98,6 @@ class LoginPage extends React.Component {
                                                     )
                                                 }}
                                             />
-                                            {/* <CustomInput
-                        labelText="Email..."
-                        id="email"
-                        formControlProps={{
-                          fullWidth: true
-                        }}
-                        inputProps={{
-                          type: "email",
-                          endAdornment: (
-                            <InputAdornment position="end">
-                              <Email className={classes.inputIconsColor} />
-                            </InputAdornment>
-                          )
-                        }}
-                      /> */}
                                             <CustomInput
                                                 labelText="密码"
                                                 id="pass"
