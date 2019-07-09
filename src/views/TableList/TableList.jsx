@@ -65,7 +65,7 @@ const data = [
             "招牌无骨酸菜鱼",
             "53",
             "2019-06-13",
-            "小明"
+            "xiaoming"
         ],
         [
             "89382742",
@@ -73,7 +73,7 @@ const data = [
             "凉瓜肉片饭",
             "13",
             "2019-07-01",
-            "小明"
+            "xiaoming"
         ],
         [
             "89382743",
@@ -81,7 +81,7 @@ const data = [
             "腐竹炒肉饭",
             "13",
             "2019-07-04",
-            "悟空"
+            "wukong"
         ],
         [
             "89382743",
@@ -89,7 +89,7 @@ const data = [
             "茄子肉沫饭",
             "14",
             "2019-07-04",
-            "悟空"
+            "wukong"
         ],
         [
             "89382744",
@@ -97,11 +97,12 @@ const data = [
             "酸汤肥牛",
             "23.8",
             "2019-07-07",
-            "悟空"
+            "wukong"
         ]
 ];
 
 function userControl(username) {
+
     if (username === "admin") {
         return data;
     } else {
@@ -111,15 +112,19 @@ function userControl(username) {
                 valid.push(data[i]);
             }
         }
-        console.log('valid data:', valid);
+        // console.log('valid data:', valid);
         return (
             valid
         )
     }
 };
 
-function TableList(props) {
-    // const { classes } = props;
+class TableList extends React.Component {
+
+    render() {
+    // const { classes } = this.props;
+    // console.log('table', this.props.location.state);
+    var user = this.props.location.state === undefined? 'admin' : this.props.location.state.username;
     return (
         <GridContainer>
             <GridItem xs={12} sm={12} md={12}>
@@ -135,14 +140,14 @@ function TableList(props) {
                                 "时间",
                                 "用户名"
                             ]}
-                            tableData={userControl("admin")}
+                            tableData={userControl(user)}
                         />
                     </CardBody>
                 </Card>
             </GridItem>
         </GridContainer>
     );
-}
+}}
 
 TableList.propTypes = {
   classes: PropTypes.object

@@ -43,15 +43,40 @@ import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 import image from "assets/img/bg7.jpg";
 
 import { Link } from "react-router-dom";
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogActions from "@material-ui/core/DialogActions";
+
+const db = {
+    userdata: [{
+        username: 'admin',
+        password: 'admin',
+    },
+    {
+        username: 'xiaoming',
+        password: 'xiaoming',
+    },{
+        username: 'wukong',
+        password: 'wukong',
+    }]
+}
 
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
         // we use this to make the card to appear after the page has been rendered
         this.state = {
-            cardAnimaton: "cardHidden"
+            cardAnimaton: "cardHidden",
+            username: "",
+            password: "",
+            next: "/login",
+            open: false,
+            setOpen: false
         };
     }
+
     componentDidMount() {
         // we add a hidden class to the card and after 700 ms we delete it and the transition appears
         setTimeout(
@@ -61,6 +86,53 @@ class LoginPage extends React.Component {
             700
         );
     }
+
+    changeUsername(e){
+        let name = e.target.value;
+        this.setState({
+            username: name
+        });
+    }
+
+    changePassword(e){
+        let passwd = e.target.value;
+        this.setState({
+            password: passwd
+        });
+    }
+
+    handleSubmit(e){
+        e.preventDefault();
+        for (var i=0; i<db.userdata.length; i++) {
+            if(db.userdata[i].username === this.state.username && db.userdata[i].password === this.state.password){
+                this.setState({
+                    next: '/admin'
+                });
+                this.props.history.push({ pathname:'/admin/table', state: { username: this.state.username} });
+                // console.log('Success!', this.state);
+            }
+        }
+        setTimeout(() => {
+            if (this.state.next === '/login') {
+                this.handleClickOpen();
+                // console.log('Failed!');
+            }
+        }, 0)
+
+    }
+
+    handleClickOpen() {
+        this.setState({
+            open: true
+        });
+    }
+
+    handleClose() {
+        this.setState({
+            open: false
+        });
+    }
+
     render() {
         const { classes } = this.props;
         return (
@@ -97,6 +169,7 @@ class LoginPage extends React.Component {
                                                         </InputAdornment>
                                                     )
                                                 }}
+                                                onChange={this.changeUsername.bind(this)}
                                             />
                                             <CustomInput
                                                 labelText="密码"
@@ -115,14 +188,41 @@ class LoginPage extends React.Component {
                                                     ),
                                                     autoComplete: "off"
                                                 }}
+                                                onChange={this.changePassword.bind(this)}
                                             />
                                         </CardBody>
                                         <CardFooter className={classes.cardFooter}>
-                                            <Link to="/admin" style={{ textDecoration: "none" }}>
-                                                <Button simple color="primary" size="lg">
-                                                    登陆
+                                                <Button
+                                                    onClick={e => this.handleSubmit(e)}
+                                                    simple color="primary" size="lg">
+                                                    <Link
+                                                        // onClick={console.log(this.state.next)}
+                                                        to={{ pathname: this.state.next, state: {username: this.state.username}}}
+                                                        style={{ textDecoration: "none" }}>
+                                                        登陆
+                                                    </Link>
                                                 </Button>
-                                            </Link>
+                                                {/*用户名或密码错误*/}
+                                                <div>
+                                                    <Dialog
+                                                        open={this.state.open}
+                                                        onClose={this.handleClose.bind(this)}
+                                                        aria-labelledby="alert-dialog-title"
+                                                        aria-describedby="alert-dialog-description"
+                                                    >
+                                                        <DialogTitle id="alert-dialog-title">{" Invalid Username or Password! "}</DialogTitle>
+                                                        <DialogContent>
+                                                            <DialogContentText id="alert-dialog-description">
+                                                                Please Check your input values again...
+                                                            </DialogContentText>
+                                                        </DialogContent>
+                                                        <DialogActions>
+                                                            <Button onClick={this.handleClose.bind(this)} color="primary">
+                                                                OK
+                                                            </Button>
+                                                        </DialogActions>
+                                                    </Dialog>
+                                                </div>
                                         </CardFooter>
                                     </form>
                                 </Card>

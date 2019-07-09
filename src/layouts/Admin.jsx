@@ -109,8 +109,10 @@ class Dashboard extends React.Component {
     }
     window.removeEventListener("resize", this.resizeFunction);
   }
+
   render() {
     const { classes, ...rest } = this.props;
+    // console.log('login', this.props.location.state);
     return (
       <div className={classes.wrapper}>
         <Sidebar
